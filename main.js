@@ -1,68 +1,11 @@
 let shop = document.getElementById("shop");
 
-let shopItemsData = [{
-    id: "producto1",
-    name: "Playadito",
-    price: 21,
-    desc: "Yerba 1 kg",
-    img: "imagenes/playadito.jpeg"
-},
-{
-    id: "producto2",
-    name: "Taragui",
-    price: 19,
-    desc: "Yerba 1 kg",
-    img: "imagenes/taragui.jpg"
-},
-{
-    id: "producto3",
-    name: "Dulce de leche",
-    price: 14,
-    desc: "Dulce de leche colonial 1kg",
-    img: "imagenes/dulcedelechecolonial.jpeg"
-},
-{
-    id: "producto4",
-    name: "Chocolinas",
-    price: 8,
-    desc: "Galletitas Chocolinas",
-    img: "imagenes/chocolinas.jpeg"
-},
-{
-    id: "producto5",
-    name: "Alfajor Terrabusi",
-    price: 10,
-    desc: "Alfajor triple 3 unidades",
-    img: "imagenes/terrabusiclasico.jpeg"
-},
-{
-    id: "producto6",
-    name: "Alfajor Milka",
-    price: 10,
-    desc: "Alfajor triple 3 unidades",
-    img: "imagenes/alfajormilka.jpeg"
-},
-{
-    id: "producto7",
-    name: "9 de Oro",
-    price: 6,
-    desc: "Bizcochitos salados",
-    img: "imagenes/9deoro.jpg"
-},
-{
-    id: "producto8",
-    name: "Pepas",
-    price: 14,
-    desc: "Galletitas con dulce de membrillo",
-    img: "imagenes/recetadeabuela.jpeg"
-}
-]
-
-let basket = [];
+let basket = JSON.parse(localStorage.getItem("data")) || [];
 
 let generateShop = () => {
     return (shop.innerHTML = shopItemsData.map((x) => {
         let { id, name, price, desc, img } = x;
+        let search = basket.find((x)=> x.id === id) || [];
         return `<div id=product-id-${id} class="item">
             <img width = "219px" src =${img} alt = "" >
                 <div class="details">
@@ -72,7 +15,7 @@ let generateShop = () => {
                         <h2>$ ${price}</h2>
                         <div class="buttons">
                             <i onclick="decrement(${id})" class="bi bi-dash-circle"></i>
-                            <div id=${id} class="quantity">0</div>
+                            <div id=${id} class="quantity">${search.item === undefined? 0: search.item}</div>
                             <i onclick="increment(${id})" class="bi bi-plus-circle"></i>
                         </div>
                     </div>
@@ -96,16 +39,23 @@ let increment = (id) => {
         search.item += 1;
     }
     update(selectedItem.id);
+    localStorage.setItem("data", JSON.stringify(basket));
+
 };
+
 let decrement = (id) => {
     let selectedItem = id;
     let search = basket.find((x) => x.id === selectedItem.id);
 
-    if (search.item === 0) return;
+    if (search === undefined) return;
+    else if (search.item === 0) return;
     else {
         search.item -= 1;
     }
-    update(selectedItem.id);
+    update(selectedItem.id); 
+    basket = basket.filter((x)=> x.item !== 0);
+    localStorage.setItem("data", JSON.stringify(basket));
+
 };
 
 let update = (id) => {
@@ -117,9 +67,9 @@ let update = (id) => {
 let calculation = () => {
     let cartIcon = document.getElementById("cartAmount");
     cartIcon.innerHTML = basket.map((x)=> x.item).reduce((x, y)=> x + y, 0);
-}
+};
 
-
+calculation();
 
 
 
