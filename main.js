@@ -27,7 +27,36 @@ let shopItemsData = [{
     price: 8,
     desc: "Galletitas Chocolinas",
     img: "imagenes/chocolinas.jpeg"
-}]
+},
+{
+    id: "producto5",
+    name: "Alfajor Terrabusi",
+    price: 10,
+    desc: "Alfajor triple 3 unidades",
+    img: "imagenes/terrabusiclasico.jpeg"
+},
+{
+    id: "producto6",
+    name: "Alfajor Milka",
+    price: 10,
+    desc: "Alfajor triple 3 unidades",
+    img: "imagenes/alfajormilka.jpeg"
+},
+{
+    id: "producto7",
+    name: "9 de Oro",
+    price: 6,
+    desc: "Bizcochitos salados",
+    img: "imagenes/9deoro.jpg"
+},
+{
+    id: "producto8",
+    name: "Pepas",
+    price: 14,
+    desc: "Galletitas con dulce de membrillo",
+    img: "imagenes/recetadeabuela.jpeg"
+}
+]
 
 let basket = [];
 
