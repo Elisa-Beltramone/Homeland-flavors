@@ -21,6 +21,7 @@ a {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    align-items: center;
     background-color: rgb(12, 10, 10);
     color: white;
     padding: 25px 60px;
@@ -52,6 +53,7 @@ a {
     grid-template-columns: repeat(4, 223px);
     gap: 30px;
     justify-content: center;
+    margin-bottom: 20px;
 }
 
 @media(max-width: 1000px) {
@@ -69,6 +71,11 @@ a {
 .item {
     border: 2px solid rgb(12, 10, 10);
     border-radius: 4px;
+}
+
+.item img {
+    width: 100%;
+    border-radius: 2x 2px 0 0;
 }
 
 .details {
@@ -98,4 +105,65 @@ a {
 
 .bi-plus-circle {
     color: green;
+}
+
+.text-center {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.HomeBtn, .checkout, .removeAll {
+    background-color: black;
+    color: white;
+    border: none;
+    padding: 6px;
+    border-radius: 3px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.checkout {
+    background-color: green;
+}
+
+.removeAll {
+    background-color: red;
+}
+
+.bi-x-octagon {
+    color: red;
+    font-weight: bold;
+}
+
+.shopping-cart {
+    display: grid;
+    grid-template-columns: repeat(1, 350px);
+    justify-content: center;
+    gap: 15px;
+}
+
+.cart-item {
+    border: 2px solid black;
+    border-radius: 5px;
+    display: flex;
+}
+
+.title-price-x {
+    width: 220px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.title-price {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.cart-item-price {
+    background-color: black;
+    color: white;
+    border-radius: 4px;
+    padding: 3px 6px;
 }
